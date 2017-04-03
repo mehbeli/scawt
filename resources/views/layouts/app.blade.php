@@ -14,6 +14,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -24,6 +26,7 @@
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/scawt.css" rel="stylesheet">
     <link rel="stylesheet" href="/packages/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.datatables/1.10.10/css/dataTables.bootstrap.min.css" integrity="sha256-z84A8SU1XXNN76l7Y+r65zvMYxgGD4v5wqg90I24Prw=" crossorigin="anonymous">
 
     <!-- Scripts -->
     <script>
@@ -55,10 +58,13 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        @if (!Auth::guest())
-                        <li><a href="" class="report-a-scam"><i class="fa fa-fw fa-bullhorn fa-lg"></i> Report A Scam</a></li>
-                        @endif
+                        <li><a href="/reports/create" class="report-a-scam"><i class="fa fa-fw fa-bullhorn fa-lg"></i> Report A Scam</a></li>
                     </ul>
+                    @if (!Auth::guest())
+                    <form class="navbar-form navbar-nav nav">
+                        <input type="text" class="form-control" placeholder="Search...">
+                    </form>
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
@@ -87,6 +93,8 @@
                                     </li>
                                 </ul>
                             </li>
+                        @else
+                        <li><a href="/login">Login</a></li>
                         @endif
                     </ul>
                 </div>
@@ -96,12 +104,16 @@
         @yield('content')
         <div class="footer">
             <div><b>SCAWT 2017</b></div>
-            <div>Open Source Crowdsourcing Scam Alert Reporting System</div>
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    <!-- Scripts
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="/js/app.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.datatables/1.10.10/js/jquery.dataTables.min.js" integrity="sha256-YKbJo9/cZwgjue3I4jsFKdE+oGkrSpqZz6voxlmn2Fo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.datatables/1.10.10/js/dataTables.bootstrap.min.js" integrity="sha256-+ytILf8MOU++C1U85FBAcI/KWqMfbbAdK7o1QN7bsOc=" crossorigin="anonymous"></script>
     @yield('js')
 </body>
 </html>
