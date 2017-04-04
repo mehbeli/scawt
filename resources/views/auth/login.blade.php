@@ -60,9 +60,9 @@
                         <div class="form-group">
                             <div class="col-md-12" style="margin-bottom: 15px;">
 
-                                <button type="submit" class="btn btn-sm btn-success btn-block btn-primary">
+                                <a href="{{ url('/register') }}" class="btn btn-sm btn-success btn-block btn-primary">
                                     Register
-                                </button>
+                                </a>
                             </div>
                         </div>
 

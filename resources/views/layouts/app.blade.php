@@ -27,6 +27,7 @@
     <link href="/css/scawt.css" rel="stylesheet">
     <link rel="stylesheet" href="/packages/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.datatables/1.10.10/css/dataTables.bootstrap.min.css" integrity="sha256-z84A8SU1XXNN76l7Y+r65zvMYxgGD4v5wqg90I24Prw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css" integrity="sha256-k66BSDvi6XBdtM2RH6QQvCz2wk81XcWsiZ3kn6uFTmM=" crossorigin="anonymous">
 
     <!-- Scripts -->
     <script>
@@ -57,9 +58,11 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
+                    @if (Route::current()->uri != 'login' && Route::current()->uri != 'register' && Route::current()->uri != 'password/reset')
                     <ul class="nav navbar-nav">
                         <li><a href="/reports/create" class="report-a-scam"><i class="fa fa-fw fa-bullhorn fa-lg"></i> Report A Scam</a></li>
                     </ul>
+                    @endif
                     @if (!Auth::guest())
                     <form class="navbar-form navbar-nav nav">
                         <input type="text" class="form-control" placeholder="Search...">
@@ -114,6 +117,7 @@
     <script src="https://cdn.jsdelivr.net/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/jquery.datatables/1.10.10/js/jquery.dataTables.min.js" integrity="sha256-YKbJo9/cZwgjue3I4jsFKdE+oGkrSpqZz6voxlmn2Fo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/jquery.datatables/1.10.10/js/dataTables.bootstrap.min.js" integrity="sha256-+ytILf8MOU++C1U85FBAcI/KWqMfbbAdK7o1QN7bsOc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js" integrity="sha256-egVvxkq6UBCQyKzRBrDHu8miZ5FOaVrjSqQqauKglKc=" crossorigin="anonymous"></script>
     @yield('js')
 </body>
 </html>
