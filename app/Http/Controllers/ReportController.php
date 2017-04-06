@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Countries;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -13,6 +14,8 @@ class ReportController extends Controller
 
     public function create(Request $request)
     {
-        return view('reports.create');
+        $countries = Countries::pluck('id', 'name');
+        $currencies = Countries::pluck('currency_code');
+        return view('reports.create')->with(compact('countries', 'currencies'));
     }
 }

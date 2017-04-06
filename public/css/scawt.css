@@ -270,3 +270,44 @@ a.report-a-scam:focus {
 .pagination li a:active {
 	color: rgba(216,27,96 ,1);
 }
+
+/* report tab */
+.nav-tab-custom li.active a,
+.nav-tab-custom li.active a:hover,
+.nav-tab-custom li.active a:visited,
+.nav-tab-custom li.active a:focus {
+	color: rgba(240,98,146 ,1);
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 4px solid rgba(240,98,146 ,1);
+	background: transparent !important;
+}
+
+.nav-tab-custom li a {
+	color: rgba(248,187,208 ,1);
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 4px solid rgba(0,0,0 ,0);
+}
+.nav-tab-custom li a:hover,
+.nav-tab-custom li a:visited,
+.nav-tab-custom li a:focus {
+	color: rgba(240,98,146 ,1)
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 4px solid rgba(240,98,146 ,1);
+	background: transparent !important;
+}
+
+/* submit report classes */
+.submit-report {
+	padding-top: 20px;
+}
+
+/* fine Uploader */
+.qq-uploader {
+	width: 100% !important;
+}

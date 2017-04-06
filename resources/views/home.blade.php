@@ -1,9 +1,4 @@
 @extends('layouts.app')
-@section('css')
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
-@endsection
-
 @section('content')
 <div class="container">
     <div class="row">
@@ -67,9 +62,7 @@ $(function() {
             { data: 'details', name: 'details' }
         ],
         order: [[0, 'asc']],
-        @if (\Auth::guest())
         filter: false,
-        @endif
         lengthChange: false,
         pagingType: 'simple',
         columnDefs: [
