@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css" integrity="sha256-k66BSDvi6XBdtM2RH6QQvCz2wk81XcWsiZ3kn6uFTmM=" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/selectize/0.12.4/css/selectize.css" integrity="sha256-HzWsbetzuScwBVnRYZIRJeXPQjHvyAMWhukery/8L8A=" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/selectize/0.12.4/css/selectize.bootstrap3.css" integrity="sha256-vd+Uk9B3nkMoM/WcbPM7JmjXiD5aRvgUhRnKQJVp/hM=" crossorigin="anonymous">
+    <link rel="stylesheet" href="/packages/sweetalert2/sweetalert2.min.css">
     @yield('css')
 
     <!-- Scripts -->
@@ -122,6 +123,7 @@
     <script src="https://cdn.jsdelivr.net/jquery.datatables/1.10.10/js/dataTables.bootstrap.min.js" integrity="sha256-+ytILf8MOU++C1U85FBAcI/KWqMfbbAdK7o1QN7bsOc=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.min.js" integrity="sha256-egVvxkq6UBCQyKzRBrDHu8miZ5FOaVrjSqQqauKglKc=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/selectize/0.12.4/js/standalone/selectize.min.js" integrity="sha256-HyBiZFJAMvxOhZoWOc5LWIWaN1gcFi8LjS75BZF4afg=" crossorigin="anonymous"></script>
+    <script src="/packages/sweetalert2/sweetalert2.min.js"></script>
     @yield('js')
 </body>
 </html>

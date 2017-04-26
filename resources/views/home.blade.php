@@ -8,12 +8,10 @@
                 <table id="scammer-list" class="table table-striped table-scammer-trending">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th style="width: 20px !important;"></th>
                             <th style="width: 27px !important;"></th>
                             <th>Title</th>
-                            <th>Location</th>
-                            <th>First report date</th>
-                            <th></th>
+                            <th style="width: 80px !important;"></th>
                         </tr>
                     </thead>
                 </table>
@@ -40,25 +38,38 @@
         </div>
     </div>
 </div>
+{{-- Details Modal --}}
+{{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button> --}}
+<div class="modal fade details-modal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Scam Details</h4>
+      </div>
+      <div class="modal-body">
+          testing
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 @section('js')
 <script>
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
+    $('table').tooltip({
+        selector: '[data-toggle="tooltip"]'
+    });
 </script>
 <script>
 $(function() {
     $('#scammer-list').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '{!! url('scammer-list') !!}',
+        ajax: '{!! url('storylist') !!}',
         columns: [
             { data: 'rownum', name: 'rownum'},
             { data: 'uv', name: 'uv' },
-            { data: 'name', name: 'name' },
-            { data: 'location', name: 'location', visible: false  },
-            { data: 'first_report', name: 'first_report' },
+            { data: 'title', name: 'title' },
             { data: 'details', name: 'details' }
         ],
         order: [[0, 'asc']],
@@ -67,11 +78,23 @@ $(function() {
         pagingType: 'simple',
         columnDefs: [
             {
-                targets: 5,
+                targets: 3,
                 sortable: false,
                 searchable: false,
                 render: function (data, type, full, meta) {
                     return '<a href="/scammer/'+data+'" class="btn btn-xs btn-info">Details</a>';
+                }
+            },
+            {
+                targets: 2,
+                sortable: false,
+                searchable: false,
+                render: function (data, type, full, meta) {
+                    if (data.external) {
+                        return '<div><b>[EXT] '+data.title+'</b></div>';
+                    } else {
+                        return '<div><b>'+data.title+'</b></div><div style="font-size: 10px;">'+data.location+'</div>';
+                    }
                 }
             },
             {
@@ -80,7 +103,7 @@ $(function() {
                 searchable: false,
                 render: function (data, type, full, meta) {
                     @if (!\Auth::guest())
-                    return '<a href="#" data-toggle="modal" data-target="#upvoteModal" data-id="'+data+'"><i class="fa fa-fw fa-chevron-up"></i></a>';
+                    return '<a href="#" data-toggle="modal" data-target="#upvoteModal" data-id="'+data+'"><i data-toggle="tooltip" title="Upvote!" class="fa fa-fw fa-chevron-up"></i></a>';
                     @else
                     return '<a href="#" class="need-login"><i class="fa fa-fw fa-chevron-up"></i></a>';
                     @endif

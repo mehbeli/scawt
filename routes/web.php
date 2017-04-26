@@ -18,5 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-Route::get('/scammer-list', 'DatatableController@scammer');
-Route::get('/reports/create', 'ReportController@create');
+Route::get('/storylist', 'DatatableController@stories');
+Route::resource('reports', 'ReportController');
+Route::post('/reports/upload', 'ReportController@upload');

@@ -7,25 +7,25 @@ use Illuminate\Http\Request;
 
 class DatatableController extends Controller
 {
-    public function scammer(Request $request)
+    public function stories(Request $request)
     {
         \DB::statement(\DB::raw('set @rownum=0'));
-        $st = \App\ScammerTest::select([
+        $st = \App\Scam::select([
             \DB::raw('@rownum  := @rownum  + 1 AS rownum'),
             'id',
-            'name',
-            'first_report',
-            'location']);
+            'title',
+            'location'])->with('totalPoint');
 
         $datatables = Datatables::of($st)
             ->addColumn('uv', function ($std) {
                 return $std->id;
             })
-            ->editColumn('name', function ($std) {
-                return '<div><b>' . $std->name . '</b></div><div style="font-size: 10px;">' . $std->location . '</div>';
-            })
-            ->editColumn('first_report', function ($std) {
-                return \Carbon\Carbon::createFromFormat('Y-m-d', $std->first_report)->diffForHumans();
+            ->editColumn('title', function ($std) {
+                if ($std->external) {
+                    return ['title' => $std->title, 'external' => true];
+                } else {
+                    return ['title' => $std->title, 'location' => $std->location, 'external' => false];
+                }
             })
             ->addColumn('details', function ($std) {
                 return $std->id;
