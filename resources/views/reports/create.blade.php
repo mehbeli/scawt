@@ -299,15 +299,17 @@ form .text-danger {
 			data: $(this).serialize(),
 			success: function (msg) {
 
-                swal(
-                  'Good!',
-                  'Your report have been submitted!',
-                  'success'
-                );
                 var submittedFileCount = uploadFile.fineUploader('getUploads', {status: qq.status.SUBMITTED}).length;
                 if (submittedFileCount > 0) {
                     uploadFile.fineUploader('uploadStoredFiles');
                 }
+
+				swal(
+                  'Good!',
+                  'Your report have been submitted!',
+                  'success'
+                );
+
 			},
 			error: function (errors) {
 				var errors = $.parseJSON(errors.responseText);
