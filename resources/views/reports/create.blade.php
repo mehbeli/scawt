@@ -170,6 +170,11 @@ form .text-danger {
                 									<input type="text" class="form-control" name="url" id="url" placeholder="Link related to the scam story">
                 								</div>
                 							</div>
+											<div class="form-group">
+                								<div class="col-sm-offset-2 col-sm-10">
+                									<span class="text-danger">*</span> Indicated required field
+                								</div>
+                							</div>
                 							<div class="form-group">
                 								<div class="col-sm-offset-2 col-sm-10">
                 									<button type="submit" class="btn btn-info">Submit</button>
