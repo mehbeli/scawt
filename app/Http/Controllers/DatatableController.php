@@ -14,7 +14,9 @@ class DatatableController extends Controller
             \DB::raw('@rownum  := @rownum  + 1 AS rownum'),
             'id',
             'title',
-            'location'])->with('totalPoint');
+            'location',
+            'url',
+            'external'])->with('totalPoint');
 
         $datatables = Datatables::of($st)
             ->addColumn('uv', function ($std) {
@@ -22,13 +24,13 @@ class DatatableController extends Controller
             })
             ->editColumn('title', function ($std) {
                 if ($std->external) {
-                    return ['title' => $std->title, 'external' => true];
+                    return ['title' => $std->title, 'url' => $std->url, 'external' => 1, 'points' => 123 ];
                 } else {
-                    return ['title' => $std->title, 'location' => $std->location, 'external' => false];
+                    return ['title' => $std->title, 'location' => $std->location, 'external' => 0, 'points' => 124];
                 }
             })
             ->addColumn('details', function ($std) {
-                return $std->id;
+                return [ 'id' => $std->id ];
             })
             ->rawColumns(['name']);
 

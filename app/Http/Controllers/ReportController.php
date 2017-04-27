@@ -64,6 +64,20 @@ class ReportController extends Controller
 
             } else {
                 $this->validate($request, Scam::$rules_url);
+
+                // store story in database
+                $scam = new Scam;
+                $scam->title = $request->title;
+                $scam->url = $request->url;
+                $scam->external = true;
+                $scam->save();
+
+                // save sender to victim (either a victim or not)
+                $victim = new Victim;
+                $victim->user_id = \Auth::id();
+                $victim->victim = ($request->victim == 'on') ? true : false;
+                $victim->reported = ($request->police == 'on') ? true : false;
+                $scam->victims()->save($victim);
             }
 
         } else {

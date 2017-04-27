@@ -82,7 +82,7 @@ $(function() {
                 sortable: false,
                 searchable: false,
                 render: function (data, type, full, meta) {
-                    return '<a href="/scammer/'+data+'" class="btn btn-xs btn-info">Details</a>';
+                    return '<a href="/scammer/'+data.id+'" class="btn btn-xs btn-info">Details</a>';
                 }
             },
             {
@@ -90,10 +90,11 @@ $(function() {
                 sortable: false,
                 searchable: false,
                 render: function (data, type, full, meta) {
-                    if (data.external) {
-                        return '<div><b>[EXT] '+data.title+'</b></div>';
+                    console.log(data);
+                    if (data.external == 1) {
+                        return '<div><b><a href="'+data.url+'">[EXT] '+data.title+'</a></b></div><div style="font-size: 10px;">'+data.points+' points</div>';
                     } else {
-                        return '<div><b>'+data.title+'</b></div><div style="font-size: 10px;">'+data.location+'</div>';
+                        return '<div><b>'+data.title+'</b></div><div style="font-size: 10px;">'+data.location+' &bull; '+data.points+' points</div>';
                     }
                 }
             },
