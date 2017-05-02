@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Upvote;
 use Datatables;
 use Illuminate\Http\Request;
 
@@ -16,21 +17,32 @@ class DatatableController extends Controller
             'title',
             'location',
             'url',
-            'external'])->with('totalPoint');
+            'external'])->with('totalPoint')->with('score');
 
         $datatables = Datatables::of($st)
             ->addColumn('uv', function ($std) {
+
+                if (\Auth::check()) {
+                    $upvoteCheck = Upvote::where('user_id', \Auth::id())->where('scam_id', $std->id)->exists();
+                    if ($upvoteCheck) {
+                        return 'voted';
+                    }
+                }
+
                 return $std->id;
             })
             ->editColumn('title', function ($std) {
+
                 if ($std->external) {
-                    return ['title' => $std->title, 'url' => $std->url, 'external' => 1, 'points' => 123 ];
+                    $fullArray = ['title' => $std->title, 'url' => $std->url, 'external' => 1, 'points' => $std->score->score];
                 } else {
-                    return ['title' => $std->title, 'location' => $std->location, 'external' => 0, 'points' => 124];
+                    $fullArray = ['title' => $std->title, 'location' => $std->location, 'external' => 0, 'points' => $std->score->score];
                 }
+
+                return $fullArray;
             })
             ->addColumn('details', function ($std) {
-                return [ 'id' => $std->id ];
+                return ['id' => $std->id];
             })
             ->rawColumns(['name']);
 

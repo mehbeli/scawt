@@ -62,6 +62,11 @@ class ReportController extends Controller
                 $victim->reported = ($request->police == 'on') ? true : false;
                 $scam->victims()->save($victim);
 
+                // Create record for upvotes total
+                $points = new Point;
+                $points->score = ($request->victim == 'on') ? 10 : 5;
+                $scam->score()->save($points);
+
             } else {
                 $this->validate($request, Scam::$rules_url);
 
@@ -78,6 +83,11 @@ class ReportController extends Controller
                 $victim->victim = ($request->victim == 'on') ? true : false;
                 $victim->reported = ($request->police == 'on') ? true : false;
                 $scam->victims()->save($victim);
+
+                // Create record for upvotes total
+                $points = new Point;
+                $points->score = ($request->victim == 'on') ? 10 : 5;
+                $scam->score()->save($points);
             }
 
         } else {

@@ -36,4 +36,9 @@ class Scam extends Model
     {
         return $this->hasMany(\App\Victim::class)->where('victim', true);
     }
+
+    public function score()
+    {
+        return $this->hasOne(\App\Point::class);
+    }
 }

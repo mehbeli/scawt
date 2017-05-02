@@ -21,3 +21,5 @@ Route::get('/home', 'HomeController@index');
 Route::get('/storylist', 'DatatableController@stories');
 Route::resource('reports', 'ReportController');
 Route::post('/reports/upload', 'ReportController@upload');
+Route::post('/reports/upvote', 'UpvoteController@upvote');
+Route::get('/users/profile', 'UserController@profile');
